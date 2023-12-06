@@ -5,7 +5,29 @@
 */
 
 function isAnagram(str1, str2) {
+  const hashmapOfStr1 = str1.toLowerCase().split("").reduce((acc, curr) => {
+    acc[curr] = acc?.[curr] ? acc[curr] + 1 :  1;
+    return acc
+  }, {})
+  const hashmapOfStr2 = str2.toLowerCase().split("").reduce((acc, curr) => {
+    acc[curr] = acc?.[curr] ? acc[curr] + 1 : 1;
+    return acc
+  }, {})
+  
+  if(Object.keys(hashmapOfStr1).length !== Object.keys(hashmapOfStr2).length){
+    return false
+  }
+
+  for(const i of Object.keys(hashmapOfStr1)){
+    if(!(hashmapOfStr1[i] === hashmapOfStr2[i])){
+      return false;
+    }
+  }
+
+  return true
 
 }
+
+console.log(isAnagram('sam', 'sams'));
 
 module.exports = isAnagram;

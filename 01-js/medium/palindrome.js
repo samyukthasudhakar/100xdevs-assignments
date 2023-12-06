@@ -4,7 +4,22 @@
 */
 
 function isPalindrome(str) {
-  return true;
+  const ESCAPE_CHARS = [" ", ",", ".", "?", "!"]
+
+  const formattedStrArr = str.toLowerCase().split("").filter(i => !ESCAPE_CHARS.includes(i));
+  const formattedStr = formattedStrArr.join("")
+  const lenOfStr = formattedStr.length;
+
+  const reversedStrArr = [];
+  for(let i=lenOfStr-1; i>=0; i--){
+    reversedStrArr.push(formattedStrArr[i])
+  }
+
+  const reversedStr = reversedStrArr.join("")
+  
+  return formattedStr === reversedStr;
 }
+
+console.log(isPalindrome('sas', 'sas'))
 
 module.exports = isPalindrome;
