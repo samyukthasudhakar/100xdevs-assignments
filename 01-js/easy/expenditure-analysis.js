@@ -14,7 +14,23 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
-  return [];
+  const totalSpendByCategoryHash = transactions.reduce((acc, {category, price}) => {
+    acc[category] = acc[category] ? acc[category] + price : price;
+
+    return acc;
+  }, [])
+  const totalSpendByCategoryArr = Object.keys(totalSpendByCategoryHash).map((key) => ({"category": key, "totalSpent": totalSpendByCategoryHash[key]}))
+  return totalSpendByCategoryArr;
 }
+
+console.log(calculateTotalSpentByCategory([
+  {
+    id: 1,
+    timestamp: 1656076800000,
+    price: 10,
+    category: 'Food',
+    itemName: 'Pizza',
+  },
+]))
 
 module.exports = calculateTotalSpentByCategory;
